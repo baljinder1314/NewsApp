@@ -27,7 +27,7 @@ export class News extends Component {
   componentDidMount = async () => {
     this.props.setProgress(10);
     this.setState({ loading: true });
-    // const url = `https://newsdata.io/api/1/latest?category=${this.props.category}&country=${this.props.country}&language=${this.props.language}&apikey=${this.props.myApiKey}`;
+    const url = `https://newsdata.io/api/1/latest?category=${this.props.category}&country=${this.props.country}&language=${this.props.language}&apikey=${this.props.myApiKey}`;
     
     let data = await fetch(url);
     let response = await data.json();
@@ -44,7 +44,7 @@ export class News extends Component {
   
   fetchMoreData = async () => {
     this.props.setProgress(10);
-    // const url = `https://newsdata.io/api/1/latest?category=${this.props.category}&country=${this.props.country}&language=${this.props.language}&apikey=${this.props.myApiKey}&page=${this.state.pageKey}`;
+    const url = `https://newsdata.io/api/1/latest?category=${this.props.category}&country=${this.props.country}&language=${this.props.language}&apikey=${this.props.myApiKey}&page=${this.state.pageKey}`;
     let data = await fetch(url);
     let response = await data.json();
     this.props.setProgress(40);
