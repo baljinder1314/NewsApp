@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export class NavBar extends Component {
   render() {
     return (
-        <nav className="navbar navbar-expand-lg bg-dark">
+        <nav className="navbar navbar-expand-lg bg-dark sticky-top">
           <div className="container-fluid">
 
           
