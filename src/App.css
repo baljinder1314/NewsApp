@@ -1,0 +1,12 @@
+.navbar-toggler {
+  filter: invert(1);
+}
+.dropdown-menu.show {
+  scrollbar-width: thin;
+  height: 500px;
+
+}
+
+.dropdown-toggle {
+  background: #333333;
+}
