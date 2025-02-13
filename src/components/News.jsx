@@ -9,27 +9,29 @@ export class News extends Component {
     result: [],
     loading: false,
     totalResults: 0,
+    
   };
   static defaultProps = {
     country: "in",
     language: "en",
     category: "",
     pageKey:''
+    
   };
   static propTypes = {
     country: PropTypes.string,
     language: PropTypes.string,
     category: PropTypes.string,
   };
-
+  
   componentDidMount = async () => {
     this.props.setProgress(10);
     this.setState({ loading: true });
-    const url = `https://newsdata.io/api/1/latest?category=${this.props.category}&country=${this.props.country}&language=${this.props.language}&apikey=${this.props.myApiKey}`;
-
+    // const url = `https://newsdata.io/api/1/latest?category=${this.props.category}&country=${this.props.country}&language=${this.props.language}&apikey=${this.props.myApiKey}`;
+    
     let data = await fetch(url);
     let response = await data.json();
-
+    
     this.props.setProgress(40);
     this.setState({
       result: response.results,
@@ -39,14 +41,14 @@ export class News extends Component {
     });
     this.props.setProgress(100);
   };
-
+  
   fetchMoreData = async () => {
     this.props.setProgress(10);
-    const url = `https://newsdata.io/api/1/latest?category=${this.props.category}&country=${this.props.country}&language=${this.props.language}&apikey=${this.props.myApiKey}&page=${this.state.pageKey}`;
+    // const url = `https://newsdata.io/api/1/latest?category=${this.props.category}&country=${this.props.country}&language=${this.props.language}&apikey=${this.props.myApiKey}&page=${this.state.pageKey}`;
     let data = await fetch(url);
     let response = await data.json();
     this.props.setProgress(40);
-
+    
     this.setState({
       result: this.state.result.concat(response.results),
       loading: false,
@@ -54,11 +56,12 @@ export class News extends Component {
     });
     this.props.setProgress(100);
   };
-
+  
   render() {
+    document.title = "NewsMonkey -" + this.props.category
     return (
       <div>
-        <h1 className="text-center my-4">NewsMonkey - Top Headlines</h1>
+        <h1 className="text-center my-4">NewsMonkey - Top {this.props.category} Headlines</h1>
         {this.state.loading && <Spinner />}
         <InfiniteScroll
           dataLength={this.state.result.length}
